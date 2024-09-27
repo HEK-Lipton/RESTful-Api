@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <title>Restful Websevice </title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Harvey Lipton">
+    <meta name="description" content="A postman like api service that can send http request to a databse on teams and players">
+    <meta name="keywords" content="API, REST, Restful, Webservice, http, response, database, teams, players">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="interface.css">
+    <script src="interface.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Restful Websevice </h1>
+    </header>
+    <main>
+        <article>
+            <section>
+                <h2>API Form:</h2>
+                <form id="http_form" name="http_form">
+                    <label for="method">Choose a request method</label> <br>
+                        <select name="method" id="method">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="PATCH">PATCH</option>
+                        </select> <br><br><br><br><br>
+                    <label for="resource">Enter the resource</label> <br>
+                        <input type="text", name="resource" style="width: 640px;"><br> 
+                    <label for="json_data">Enter JSON Data</label> <br>
+                        <textarea name="json_data" rows="5" style="width: 640px;"></textarea> <br>
+                    <button onclick="sendRequest()" id="button">Send Request</button> 
+                </form>
+            </section>    
+            <section>
+                <h2>HTTP Status Code:</h2>
+                <p id="http_status_code"></p>
+            </section>
+            <section>
+                <h2>HTTP Response Body:</h2>
+                <p id="http_response"></p>
+            </section>
+            <section>
+                <button onclick="clear_output()">Clear Output</button>
+            </section>
+            <section name="description">
+                <h2>API Use Instructions:</h2>
+                <dl>
+                  <dt>Valid player, team ids and Birthdays</dt>
+                  <dd>Both teamId and playerId are integers of up to 5 digits. All dates are in the form yyyy/mm/dd </dd>
+                  <dt>Request method for retrieving information on all teams</dt>
+                  <dd>GET method</dd>
+                  <dt>Resource for retrieving information on all teams</dt>
+                  <dd>/teams</dd>
+                  <dt>Request method for retrieving information on all players of team {teamId}</dt>
+                  <dd>GET method</dd>
+                  <dt>Resource for retrieving information on all players of team {teamId}</dt>
+                  <dd>/teams/{teamId}</dd>    
+                  <dt>Request method for retrieving information on player {playerId} of team {teamId}</dt>
+                  <dd>GET method</dd>
+                  <dt>Resource for retrieving information on player {playerId} of team {teamId}</dt>
+                  <dd>/teams/{teamId}/players/{playerId}</dd>    
+                  <dt>Request method for adding a player to team {teamId}</dt>
+                  <dd>POST method</dd>
+                  <dt>Resource for adding a player to team {teamId}</dt>
+                  <dd>/teams/{teamId}</dd>
+                  <dt>Sample request body for adding a player to team {teamId}<dt>
+                  <dd>  {
+                        "playerSurname":"John",
+                        "playerForname":"Smith",
+                        "playerNation":"England",
+                        "playerBirth":"1998-04-01"
+                        }</dd>
+                  <dt>Request method for updating information on player {playerId} of team {teamId}</dt>
+                  <dd>PATCH method</dd>
+                  <dt>Resource for updating information on player {playerId} of team {teamId}</dt>
+                  <dd>/teams/{teamId}/players/{playerId}</dd>
+                  <dt>Sample request body for updating information on player {playerId} of team {teamId}<dt>
+                  <dd> {
+                        "playerSurname":"Paul",
+                        "playerNation":"Wales"
+                        }</dd>
+                  <dt>Request method for deleting a player {playerId} from team {teamId}</dt>
+                  <dd>DELETE method</dd>
+                  <dt>Resource for deleting a player {playerId} from team {teamId}</dt>
+                  <dd>/teams/{teamId}/players/{playerId}</dd>
+                </dl>
+              </section>
+        </article>
+    </main>
+</body>
+</html>
